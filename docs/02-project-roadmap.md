@@ -8,13 +8,14 @@ Este documento detalla las fases de construcción incremental de la web personal
 
 ### 🟢 Fase 1: Fundamentos del Repositorio y Bóveda (Completado / En progreso)
 - [x] Inicialización del repositorio Git local y remoto (`MA73OOO/web-personal`).
-- [x] Configuración de la Bóveda de Documentación (`docs/`).
-- [x] Configuración del contexto para agentes de IA (`.agents/AGENTS.md`).
-- [x] Creación de `.gitignore` base.|
+- [x] Configuración de la Bóveda de Documentación (`docs/01`, `docs/02`, `docs/03`).
+- [x] Configuración de la Bóveda de Harneses (`harness/frontend`, `harness/deploy-config`, `harness/content`).
+- [x] Estructura de contexto para agentes (`.agents/AGENTS.md`, `.agents/gemini/`, `.agents/claude/`, etc.).
+- [x] Creación de `.gitignore` base.
 
 ### 🟡 Fase 2: Configuración del Frontend Next.js (App Router)
-- [ ] Inicialización de la aplicación Next.js con TypeScript y Tailwind.
-- [ ] Configuración de `next.config.js` con `output: 'export'`.
+- [x] Inicialización de la aplicación Next.js con TypeScript y Tailwind.|
+- [x] Configuración de `next.config.js` con `output: 'export'`.
 - [ ] Definición del sistema de diseño (paleta de colores, tipografía, componentes UI base).
 - [ ] Componente Layout (Navbar y Footer base).
 - [ ] Integración de animaciones / micro-interacciones.

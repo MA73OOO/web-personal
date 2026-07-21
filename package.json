@@ -1,12 +1,16 @@
 {
-  "name": "temp-next",
+  "name": "web-personal",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "harness:frontend": "node harness/frontend/validate-build.js",
+    "harness:env": "powershell -ExecutionPolicy Bypass -File ./harness/deploy-config/check-env.ps1",
+    "harness:git": "powershell -ExecutionPolicy Bypass -File ./harness/deploy-config/git-prep.ps1",
+    "harness:content": "node harness/content/validate-schemas.js"
   },
   "dependencies": {
     "next": "16.2.11",

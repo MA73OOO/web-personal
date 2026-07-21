@@ -19,10 +19,21 @@ Welcome agent! This document contains the context, architectural rules, and proj
 ```text
 web-personal/
 ├── .agents/                    # Agent rules and context definitions
-│   └── AGENTS.md
+│   ├── AGENTS.md               # Main general entrypoint for AI agents
+│   ├── gemini/                 # Context and rules for Gemini / Antigravity
+│   │   └── AGENTS.md
+│   ├── claude/                 # Reserved for Claude context
+│   ├── openai/                 # Reserved for OpenAI context
+│   └── cursor/                 # Reserved for Cursor context
 ├── docs/                       # Project documentation & Architecture Decision Records (ADRs)
 │   ├── 01-architecture-overview.md
-│   └── 02-project-roadmap.md
+│   ├── 02-project-roadmap.md
+│   └── 03-harnesses-and-automation.md
+├── harness/                    # Developer & Git harness automation tools
+│   ├── README.md
+│   ├── validate-build.js
+│   ├── check-env.ps1
+│   └── git-prep.ps1
 ├── terraform/                  # AWS Infrastructure modules & environments
 ├── src/                        # React SPA source code
 │   ├── assets/                 # Images, icons, static documents
