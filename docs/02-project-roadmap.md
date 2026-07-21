@@ -26,9 +26,9 @@ Este documento detalla las fases de construcción incremental de la web personal
 - [ ] Vistas principales (Inicio, Showcase Proyectos, Artículos/Escritos, Sobre mí).
 
 ### 🟣 Fase 4: Infraestructura con Terraform
-- [ ] Módulo Terraform para S3 Bucket estático.
-- [ ] Módulo Terraform para CloudFront CDN y Origin Access Control (OAC).
-- [ ] Variables y Outputs declarados en Terraform.
+- [x] Módulo Terraform para S3 Bucket estático (`site`) y S3 Bucket multimedia (`media`).
+- [x] Módulo Terraform para CloudFront CDN con Origin Access Control (OAC) y regla `/media/*`.
+- [x] Variables, Outputs e IAM Policies declarados en `terraform/main.tf`.
 
 ### 🟠 Fase 5: Despliegue Automatizado (CI/CD)
 - [ ] Configuración del workflow de GitHub Actions.

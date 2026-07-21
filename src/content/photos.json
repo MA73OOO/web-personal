@@ -1,0 +1,62 @@
+[
+  {
+    "id": "foto-01",
+    "title": "Arquitectura Brutalista & Sombras",
+    "year": "2026",
+    "date": "2026-02-14",
+    "category": "Arquitectura",
+    "location": "Bogotá, Colombia",
+    "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-[4/5]"
+  },
+  {
+    "id": "foto-02",
+    "title": "Luces Nocturnas de la Ciudad",
+    "year": "2026",
+    "date": "2026-01-20",
+    "category": "Nocturna",
+    "location": "Medellín, Colombia",
+    "url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-[16/9]"
+  },
+  {
+    "id": "foto-03",
+    "title": "Minimalismo Monocromático",
+    "year": "2025",
+    "date": "2025-11-05",
+    "category": "Conceptual",
+    "location": "Estudio",
+    "url": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-square"
+  },
+  {
+    "id": "foto-04",
+    "title": "Paisaje Silencioso en las Alturas",
+    "year": "2025",
+    "date": "2025-08-18",
+    "category": "Naturaleza",
+    "location": "Paramo de Sumapaz",
+    "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-[4/3]"
+  },
+  {
+    "id": "foto-05",
+    "title": "Texturas en Concreto",
+    "year": "2024",
+    "date": "2024-05-12",
+    "category": "Arquitectura",
+    "location": "Bogotá, Colombia",
+    "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-[3/4]"
+  },
+  {
+    "id": "foto-06",
+    "title": "Retrato en Claroscuro",
+    "year": "2024",
+    "date": "2024-02-28",
+    "category": "Retrato",
+    "location": "Bogotá, Colombia",
+    "url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
+    "aspectRatio": "aspect-[4/5]"
+  }
+]

@@ -1,0 +1,108 @@
+[
+  {
+    "company": "Colabb World",
+    "role": {
+      "es": "Co-Founder & Software Architect",
+      "en": "Co-Founder & Software Architect"
+    },
+    "period": {
+      "es": "Dic 2025 – Presente",
+      "en": "Dec 2025 – Present"
+    },
+    "location": "Bogotá, Colombia",
+    "isCurrent": true,
+    "highlights": {
+      "es": [
+        "Diseño y desarrollo integral de la arquitectura Web y Móvil para la plataforma comercial Colabb utilizando arquitectura Monorepo impulsada por Next.js, React Native (Expo) y Turborepo.",
+        "Aprovisionamiento y despliegue de infraestructura en la nube en AWS mediante Terraform (Infrastructure as Code - IaC), garantizando entornos automáticos y seguros.",
+        "Administración del motor de base de datos relacional PostgreSQL (AWS RDS) integrado con Prisma ORM y túneles de acceso seguro con AWS SSM.",
+        "Implementación del módulo centralizado de autenticación y gestión de usuarios mediante AWS Cognito y pipelines de CI/CD con GitHub Actions.",
+        "Documentación centralizada de la arquitectura del sistema, diagramas de flujo y decisiones técnicas utilizando Obsidian y Markdown."
+      ],
+      "en": [
+        "End-to-end Web and Mobile architecture design for Colabb using a Monorepo setup powered by Next.js, React Native (Expo), and Turborepo.",
+        "Cloud infrastructure provisioning on AWS via Terraform (Infrastructure as Code - IaC), ensuring automated, secure environments.",
+        "Relational database management with PostgreSQL (AWS RDS) integrated with Prisma ORM and secure access tunnels via AWS SSM.",
+        "Centralized authentication and user management module implementation using AWS Cognito and CI/CD pipelines via GitHub Actions.",
+        "Centralized system architecture documentation, flow diagrams, and technical decision records using Obsidian and Markdown."
+      ]
+    },
+    "technologies": ["Next.js", "React Native (Expo)", "Turborepo", "AWS (Cognito, RDS, SSM)", "Terraform", "PostgreSQL", "Prisma ORM", "GitHub Actions"]
+  },
+  {
+    "company": "SEDI (Sistema ERP Empresarial)",
+    "role": {
+      "es": "Desarrollador de Software Junior",
+      "en": "Junior Software Developer"
+    },
+    "period": {
+      "es": "Jul 2025 – Dic 2025",
+      "en": "Jul 2025 – Dec 2025"
+    },
+    "location": "Bogotá, Colombia",
+    "isCurrent": false,
+    "highlights": {
+      "es": [
+        "Desarrollo de componentes e interfaces de usuario dinámicas con Angular y Tailwind CSS para el ERP empresarial SEDI, priorizando rendimiento y diseño responsivo.",
+        "Identificación y resolución de cuellos de botella de navegación e inconvenientes de experiencia de usuario (UX/UI), mejorando la adopción de la plataforma.",
+        "Construcción e implementación de lógica de negocio en el Backend utilizando C# (.NET) y JavaScript, administrando bases de datos mediante Stored Procedures en SQL Server."
+      ],
+      "en": [
+        "Development of dynamic UI components and interfaces with Angular and Tailwind CSS for the SEDI enterprise ERP.",
+        "Identification and resolution of navigation bottlenecks and UX/UI issues, boosting platform adoption.",
+        "Backend business logic implementation using C# (.NET) and JavaScript, managing database logic through SQL Server Stored Procedures."
+      ]
+    },
+    "technologies": ["Angular", "Tailwind CSS", "C# (.NET)", "JavaScript", "SQL Server"]
+  },
+  {
+    "company": "Serlefin (Operación Banco Davivienda)",
+    "role": {
+      "es": "Analista de Riesgo y Fraude Transaccional",
+      "en": "Transactional Fraud & Risk Analyst"
+    },
+    "period": {
+      "es": "Mar 2024 – Jul 2024",
+      "en": "Mar 2024 – Jul 2024"
+    },
+    "location": "Bogotá, Colombia",
+    "isCurrent": false,
+    "highlights": {
+      "es": [
+        "Análisis e investigación preventiva de transacciones atípicas en tarjetas de crédito y solicitudes crediticias enviadas en tiempo real por los medios de Banco Davivienda.",
+        "Ejecución de protocolos de seguridad inmediatos: emisión de alertas preventivas, notificación directa al cliente y bloqueo preventivo de productos financieros comprometidos.",
+        "Investigación de trazabilidad del origen del fraude mediante la validación de solicitudes, registros y datos biométricos."
+      ],
+      "en": [
+        "Preventive analysis and investigation of atypical credit card transactions and credit applications sent in real-time.",
+        "Immediate security protocol execution: preventive alerts, direct customer notifications, and account blocking.",
+        "Fraud traceability investigation by validating applications, records, and biometric data."
+      ]
+    },
+    "technologies": ["Risk Analysis", "Fraud Prevention", "Banking Systems", "Biometric Validation"]
+  },
+  {
+    "company": "Promociones & Cobranzas Beta (Aliado Banco Davivienda)",
+    "role": {
+      "es": "Gestor de Cobro & Asistente Financiero",
+      "en": "Collections Officer & Financial Assistant"
+    },
+    "period": {
+      "es": "Feb 2020 – Sep 2022",
+      "en": "Feb 2020 – Sep 2022"
+    },
+    "location": "Bogotá, Colombia",
+    "isCurrent": false,
+    "highlights": {
+      "es": [
+        "Asesoría y estructuración de acuerdos de asistencia financiera para la recuperación de carteras de crédito de personas naturales y empresas.",
+        "Gestión completa del ciclo de cobro y concertación de alternativas sostenibles de pago."
+      ],
+      "en": [
+        "Financial assistance agreement structuring for credit portfolio recovery for individuals and corporations.",
+        "Full collection lifecycle management and negotiation of sustainable payment alternatives."
+      ]
+    },
+    "technologies": ["Financial Advisory", "Portfolio Management", "Negotiation"]
+  }
+]

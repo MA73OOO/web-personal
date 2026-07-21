@@ -33,9 +33,10 @@ flowchart TD
 * **Build Target:** Genera la carpeta `out/` con archivos HTML/CSS/JS optimizados para S3.
 
 ### 2. Infraestructura (Terraform + AWS)
-* **Storage:** Bucket S3 configurado como sitio estático restringido.
-* **CDN:** CloudFront OAC (Origin Access Control) para servir el bucket de manera segura con cache global.
-* **Seguridad:** HTTPS mediante AWS Certificate Manager (ACM).
+* **Storage Principal (Site):** Bucket S3 configurado para alojar el paquete estático compilado (`out/`).
+* **Storage Multimedia (Media):** Bucket S3 independiente para servir imágenes de fotogalería y archivos de audio MP3 para la Radio Personal.
+* **CDN (CloudFront):** Distribución unificada con Origin Access Control (OAC) y regla ordenada `/media/*` para cachear contenido estático e imágenes globales por HTTPS sin exponer buckets públicamente.
+* **Seguridad:** HTTPS mediante AWS Certificate Manager (ACM) e IAM OAC policies.
 
 ### 3. CI/CD (GitHub Actions)
 * Automatizaciones para construir la app (`npm run build`), sincronizar el resultado estático al Bucket S3 y purgar la caché de CloudFront automáticamente al subir cambios a `main`.

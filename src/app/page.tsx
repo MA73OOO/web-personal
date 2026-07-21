@@ -1,65 +1,74 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/content/translations";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = translations[language].home;
+
+  const quadrants = [
+    {
+      id: "ma73o",
+      title: t.ma73o.title,
+      description: t.ma73o.description,
+      href: "/ma73o",
+      buttonText: t.ma73o.buttonText,
+    },
+    {
+      id: "galeria",
+      title: t.galeria.title,
+      description: t.galeria.description,
+      href: "/galeria",
+      buttonText: t.galeria.buttonText,
+    },
+    {
+      id: "desarrollo",
+      title: t.desarrollo.title,
+      description: t.desarrollo.description,
+      href: "/desarrollo",
+      buttonText: t.desarrollo.buttonText,
+    },
+    {
+      id: "biblioteca",
+      title: t.biblioteca.title,
+      description: t.biblioteca.description,
+      href: "/biblioteca",
+      buttonText: t.biblioteca.buttonText,
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="w-full h-full bg-transparent text-black dark:text-white relative grid grid-cols-2 grid-rows-2 font-sans select-none overflow-hidden transition-colors duration-500">
+      {/* Central Horizontal Crosshair Line */}
+      <div className="absolute top-1/2 left-0 right-0 h-[1.5px] bg-black/80 dark:bg-white/80 z-20 pointer-events-none transition-colors duration-500" />
+
+      {/* Central Vertical Crosshair Line */}
+      <div className="absolute top-0 bottom-0 left-1/2 w-[1.5px] bg-black/80 dark:bg-white/80 z-20 pointer-events-none transition-colors duration-500" />
+
+      {quadrants.map((quad) => (
+        <Link
+          key={quad.id}
+          href={quad.href}
+          className="group relative flex flex-col items-center justify-center p-3 sm:p-6 md:p-12 text-center transition-colors duration-500 hover:bg-black hover:text-white dark:hover:bg-neutral-100 dark:hover:text-black"
+        >
+          {/* Main Title — Responsive font size to prevent overlap on mobile */}
+          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-[4.5rem] font-extrabold tracking-tight uppercase transition-all duration-500 ease-out group-hover:-translate-y-6 sm:group-hover:-translate-y-8 md:group-hover:-translate-y-12">
+            {quad.title}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+          {/* Hover Details Container — Absolute to avoid affecting title default position */}
+          <div className="absolute bottom-3 sm:bottom-6 md:bottom-12 left-3 right-3 sm:left-6 sm:right-6 flex flex-col items-center gap-2 sm:gap-4 opacity-0 translate-y-4 sm:translate-y-6 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 ease-out">
+            <p className="text-xs sm:text-sm md:text-xl lg:text-[1.5rem] font-light leading-tight max-w-[90%] sm:max-w-sm text-neutral-300 dark:group-hover:text-neutral-700">
+              {quad.description}
+            </p>
+            <span className="inline-block px-2.5 sm:px-4 py-1 sm:py-2 bg-white text-black dark:bg-black dark:text-white font-mono text-[9px] sm:text-[11px] font-bold tracking-widest uppercase border border-white dark:border-black hover:bg-neutral-200 dark:hover:bg-neutral-900 transition-colors shadow-lg">
+              {quad.buttonText}
+            </span>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 }

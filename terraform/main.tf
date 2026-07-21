@@ -1,0 +1,211 @@
+terraform {
+  required_version = ">= 1.5.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.5"
+    }
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project     = var.project_name
+      Environment = var.environment
+      ManagedBy   = "Terraform"
+    }
+  }
+}
+
+# Generador de sufijo único para nombres globales de S3
+resource "random_id" "bucket_suffix" {
+  byte_length = 4
+}
+
+# 1. Bucket S3 para Sitio Web Estático (Next.js out/)
+resource "aws_s3_bucket" "website_bucket" {
+  bucket        = "${var.project_name}-site-${random_id.bucket_suffix.hex}"
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_public_access_block" "website_public_block" {
+  bucket                  = aws_s3_bucket.website_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# 2. Bucket S3 para Multimedia (Fotografías y Audio MP3)
+resource "aws_s3_bucket" "media_bucket" {
+  bucket        = "${var.project_name}-media-${random_id.bucket_suffix.hex}"
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_cors_configuration" "media_cors" {
+  bucket = aws_s3_bucket.media_bucket.id
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET", "HEAD"]
+    allowed_origins = ["*"]
+    max_age_seconds = 3600
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "media_public_block" {
+  bucket                  = aws_s3_bucket.media_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# 3. Origin Access Control (OAC) para CloudFront
+resource "aws_cloudfront_origin_access_control" "site_oac" {
+  name                              = "${var.project_name}-site-oac"
+  description                       = "Acceso seguro de CloudFront a S3 Sitio Web"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+resource "aws_cloudfront_origin_access_control" "media_oac" {
+  name                              = "${var.project_name}-media-oac"
+  description                       = "Acceso seguro de CloudFront a S3 Media"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+# 4. Distribución de CloudFront CDN
+resource "aws_cloudfront_distribution" "cdn" {
+  enabled             = true
+  is_ipv6_enabled     = true
+  default_root_object = "index.html"
+  comment             = "CDN para ${var.project_name} (${var.environment})"
+
+  # Origen 1: Sitio Web Estático (Next.js)
+  origin {
+    domain_name              = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+    origin_id                = "S3-Website-Origin"
+    origin_access_control_id = aws_cloudfront_origin_access_control.site_oac.id
+  }
+
+  # Origen 2: Archivos Multimedia (Fotos / Audio)
+  origin {
+    domain_name              = aws_s3_bucket.media_bucket.bucket_regional_domain_name
+    origin_id                = "S3-Media-Origin"
+    origin_access_control_id = aws_cloudfront_origin_access_control.media_oac.id
+  }
+
+  # Comportamiento predeterminado (Sitio Web)
+  default_cache_behavior {
+    target_origin_id       = "S3-Website-Origin"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    viewer_protocol_policy = "redirect-to-https font-src 'self'"
+    min_ttl                = 0
+    default_ttl            = 86400
+    max_ttl                = 31536000
+
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+
+  # Comportamiento para assets multimedia (/media/*)
+  ordered_cache_behavior {
+    path_pattern           = "/media/*"
+    target_origin_id       = "S3-Media-Origin"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    viewer_protocol_policy = "redirect-to-https"
+    min_ttl                = 0
+    default_ttl            = 604800
+    max_ttl                = 31536000
+
+    forwarded_values {
+      query_string = false
+      headers      = ["Origin", "Access-Control-Request-Headers", "Access-Control-Request-Method"]
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+
+  # Configuración de respuestas de error para Next.js App Router (SPA routing fallback)
+  custom_error_response {
+    error_code            = 404
+    response_code         = 200
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 10
+  }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}
+
+# 5. Políticas de Acceso en S3 para CloudFront OAC
+resource "aws_s3_bucket_policy" "website_policy" {
+  bucket = aws_s3_bucket.website_bucket.id
+  policy = data.aws_iam_policy_document.website_s3_policy.json
+}
+
+data "aws_iam_policy_document" "website_s3_policy" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.website_bucket.arn}/*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.cdn.arn]
+    }
+  }
+}
+
+resource "aws_s3_bucket_policy" "media_policy" {
+  bucket = aws_s3_bucket.media_bucket.id
+  policy = data.aws_iam_policy_document.media_s3_policy.json
+}
+
+data "aws_iam_policy_document" "media_s3_policy" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.media_bucket.arn}/*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.cdn.arn]
+    }
+  }
+}

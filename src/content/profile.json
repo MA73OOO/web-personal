@@ -1,0 +1,187 @@
+{
+  "name": "MATEO HENAO RANGEL",
+  "alias": "MA73O",
+  "title": "Full-Stack Developer & Software Architect",
+  "location": "Bogotá, Colombia",
+  "phone": "(+57) 350 142 7443",
+  "email": "henaorangelmateo@gmail.com",
+  "linkedin": "https://linkedin.com/in/mateo-henao-rangel",
+  "github": "https://github.com/MA73OOO",
+  "englishLevel": "B2 (Upper Intermediate)",
+  "bio": {
+    "es": "Desarrollador de Software Full-Stack y Arquitecto Web/Móvil pionero en la adopción de flujos de desarrollo asistido por IA (AI-Assisted Software Engineering) y Agentic Development. Sólida experiencia en el diseño de arquitectura monorepo, aprovisionamiento de infraestructura en la nube con Terraform en AWS, modelado de bases de datos relacionales y pipelines de automatización.",
+    "en": "Full-Stack Software Developer and Web/Mobile Architect pioneering the adoption of AI-Assisted Software Engineering and Agentic Development workflows. Solid experience in designing monorepo architectures, provisioning cloud infrastructure with Terraform on AWS, relational database modeling, and automated pipelines."
+  },
+  "technicalCategories": {
+    "es": [
+      {
+        "category": "Lenguajes de Programación",
+        "skills": [
+          { "name": "JavaScript (ES6+)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+          { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+          { "name": "C#", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+          { "name": "SQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqldeveloper/sqldeveloper-original.svg" },
+          { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+          { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" }
+        ]
+      },
+      {
+        "category": "Frontend & Desarrollo Móvil",
+        "skills": [
+          { "name": "Next.js 15", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+          { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { "name": "React Native (Expo)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { "name": "Angular", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+          { "name": "Tailwind CSS v4", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+          { "name": "Figma", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" }
+        ]
+      },
+      {
+        "category": "Backend & ORMs",
+        "skills": [
+          { "name": ".NET Core", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" },
+          { "name": "Node.js", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+          { "name": "Prisma ORM", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+          { "name": "REST APIs", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" }
+        ]
+      },
+      {
+        "category": "Bases de Datos & Almacenamiento",
+        "skills": [
+          { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+          { "name": "SQL Server", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg" },
+          { "name": "MySQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" }
+        ]
+      },
+      {
+        "category": "Despliegue & Nube (IaC)",
+        "skills": [
+          { "name": "Terraform (IaC)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
+          { "name": "AWS", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+          { "name": "Vercel", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" }
+        ]
+      },
+      {
+        "category": "CI/CD & Control de Versiones",
+        "skills": [
+          { "name": "GitHub Actions", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" },
+          { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }
+        ]
+      },
+      {
+        "category": "Desarrollo Asistido por IA & Agentes",
+        "skills": [
+          { "name": "Google Antigravity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
+          { "name": "Anthropic Claude", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+          { "name": "MCP Protocols", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg" }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "category": "Programming Languages",
+        "skills": [
+          { "name": "JavaScript (ES6+)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+          { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+          { "name": "C#", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+          { "name": "SQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqldeveloper/sqldeveloper-original.svg" },
+          { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+          { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" }
+        ]
+      },
+      {
+        "category": "Frontend & Mobile Development",
+        "skills": [
+          { "name": "Next.js 15", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+          { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { "name": "React Native (Expo)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { "name": "Angular", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+          { "name": "Tailwind CSS v4", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+          { "name": "Figma", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" }
+        ]
+      },
+      {
+        "category": "Backend & ORMs",
+        "skills": [
+          { "name": ".NET Core", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" },
+          { "name": "Node.js", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+          { "name": "Prisma ORM", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+          { "name": "REST APIs", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" }
+        ]
+      },
+      {
+        "category": "Databases & Storage",
+        "skills": [
+          { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+          { "name": "SQL Server", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg" },
+          { "name": "MySQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" }
+        ]
+      },
+      {
+        "category": "Deployment & Cloud Infrastructure (IaC)",
+        "skills": [
+          { "name": "Terraform (IaC)", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
+          { "name": "AWS", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+          { "name": "Vercel", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" }
+        ]
+      },
+      {
+        "category": "Continuous Integration (CI/CD) & Version Control",
+        "skills": [
+          { "name": "GitHub Actions", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" },
+          { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }
+        ]
+      },
+      {
+        "category": "AI-Assisted Development & Code Agents",
+        "skills": [
+          { "name": "Google Antigravity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
+          { "name": "Anthropic Claude", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+          { "name": "MCP Protocols", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg" }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "es": [
+      {
+        "degree": "Técnico en Programación de Software",
+        "institution": "SENA (En curso)",
+        "details": "Énfasis en Programación Orientada a Objetos (POO), arquitectura MVC con C# / .NET y bases de datos relacionales (MySQL, PostgreSQL)."
+      },
+      {
+        "degree": "Técnico en Riesgo Crediticio y su Administración",
+        "institution": "SENA",
+        "details": "Prácticas profesionales desarrolladas en Banco Davivienda."
+      },
+      {
+        "degree": "Bachiller Académico",
+        "institution": "Instituto Académico Bethel",
+        "year": "2019"
+      }
+    ],
+    "en": [
+      {
+        "degree": "Software Programming Diploma",
+        "institution": "SENA (Currently Studying)",
+        "details": "Focus on Object-Oriented Programming (OOP), MVC architecture with C# / .NET, and relational database modeling (MySQL, PostgreSQL)."
+      },
+      {
+        "degree": "Credit Risk Management Diploma",
+        "institution": "SENA",
+        "details": "Professional internship completed at Banco Davivienda."
+      },
+      {
+        "degree": "High School Diploma",
+        "institution": "Bethel Academic Institute",
+        "year": "2019"
+      }
+    ]
+  },
+  "certifications": [
+    "Curso de C# y .NET Avanzado — Microsoft Learn",
+    "Compilación de Web APIs Mínimas en .NET — Microsoft Learn",
+    "JavaScript Algorithms & Data Structures — FreeCodeCamp",
+    "Prototipado Profesional y Componentes en Figma — Platzi"
+  ]
+}
