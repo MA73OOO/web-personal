@@ -7,11 +7,11 @@ Welcome agent! This document contains the context, architectural rules, and proj
 ## 1. Project Overview & Architecture
 * **Type:** Personal Showcase & Portfolio Web Application (SPA).
 * **Target Stack:**
-  * **Frontend:** React (Vite), Vanilla CSS / Tailwind (modern HSL color system, glassmorphism, fluid animations).
+  * **Frontend:** Next.js (App Router, Static Export `output: 'export'`), Tailwind CSS / Vanilla CSS, TypeScript.
   * **Content Store:** Git-based JSON and Markdown files (no external database server).
   * **Hosting & Delivery:** AWS S3 Bucket (Static Site Hosting) + AWS CloudFront (CDN) + AWS Route53 (DNS / SSL).
   * **Infrastructure as Code (IaC):** Terraform.
-  * **CI/CD:** GitHub Actions (Automated build & sync to S3 + CloudFront cache invalidation).
+  * **CI/CD:** GitHub Actions (Automated `next build` & sync `out/` to S3 + CloudFront cache invalidation).
 
 ---
 

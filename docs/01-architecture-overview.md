@@ -26,10 +26,11 @@ flowchart TD
 
 ## ⚙️ Componentes Principales
 
-### 1. Frontend (React SPA)
-* **Framework:** React + Vite para construcción ultra rápida y bundling ligero.
-* **Estilos:** CSS moderno con variables HSL / Tokens de diseño.
+### 1. Frontend (Next.js App Router)
+* **Framework:** Next.js (TypeScript, React 19 / App Router) con salida estática (`output: 'export'`).
+* **Estilos:** Tailwind CSS + Tokens de diseño personalizados.
 * **Manejo de Contenido:** Carga local/dinámica de esquemas JSON y archivos Markdown desde `src/content/`.
+* **Build Target:** Genera la carpeta `out/` con archivos HTML/CSS/JS optimizados para S3.
 
 ### 2. Infraestructura (Terraform + AWS)
 * **Storage:** Bucket S3 configurado como sitio estático restringido.

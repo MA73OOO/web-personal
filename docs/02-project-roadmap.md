@@ -12,10 +12,11 @@ Este documento detalla las fases de construcción incremental de la web personal
 - [x] Configuración del contexto para agentes de IA (`.agents/AGENTS.md`).
 - [x] Creación de `.gitignore` base.|
 
-### 🟡 Fase 2: Configuración del Frontend React (Vite)
-- [ ] Inicialización de la aplicación React con Vite.
-- [ ] Definición del sistema de diseño (paleta de colores, tipografía, reset de estilos CSS).
-- [ ] Componente Navbar y Footer base.
+### 🟡 Fase 2: Configuración del Frontend Next.js (App Router)
+- [ ] Inicialización de la aplicación Next.js con TypeScript y Tailwind.
+- [ ] Configuración de `next.config.js` con `output: 'export'`.
+- [ ] Definición del sistema de diseño (paleta de colores, tipografía, componentes UI base).
+- [ ] Componente Layout (Navbar y Footer base).
 - [ ] Integración de animaciones / micro-interacciones.
 
 ### 🔵 Fase 3: Esquema de Contenido Git-based
