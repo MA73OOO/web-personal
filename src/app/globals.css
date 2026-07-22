@@ -1,20 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Poppins', var(--font-poppins), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', var(--font-poppins), system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-poppins), system-ui, sans-serif;
   /* Light Mode: Fondo blanco puro con textura densa de puntos grises */
   background-color: #ffffff;
   color: #121212;
@@ -44,4 +46,113 @@ body {
 
 .animate-slideInRight {
   animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   SISTEMA DE DISEÑO — JERARQUÍA TIPOGRÁFICA & CONTRASTE
+   ========================================================================== */
+
+/* Títulos Principales de Página (H1) */
+.title-page {
+  font-family: 'Poppins', var(--font-poppins), sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.dark .title-page {
+  color: #ffffff;
+}
+
+/* Títulos de Sección (H2) - Alto impacto en Mono */
+.title-section {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.dark .title-section {
+  color: #ffffff;
+}
+
+/* Subtítulos de Tarjetas / Puestos (H3) */
+.title-sub {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #171717;
+}
+
+.dark .title-sub {
+  color: #f5f5f5;
+}
+
+/* Etiqueta Monospaciada de Alta Visibilidad */
+.label-mono {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #262626;
+}
+
+.dark .label-mono {
+  color: #e5e5e5;
+}
+
+/* Texto de Cuerpo Legible y Destacado */
+.text-body {
+  font-family: 'Poppins', var(--font-poppins), sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #171717;
+}
+
+.dark .text-body {
+  color: #e5e5e5;
+}
+
+/* Botones Principales de Alto Contraste */
+.btn-primary {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-width: 2px;
+  border-color: #000000;
+  background-color: #000000;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.dark .btn-primary {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Badges / Etiquetas Técnicas Destacadas */
+.badge-tech {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 700;
+  border-width: 1.5px;
+  border-color: #000000;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.dark .badge-tech {
+  border-color: #ffffff;
+  background-color: #050505;
+  color: #ffffff;
+  box-shadow: 2px 2px 0px rgba(255,255,255,0.1);
 }

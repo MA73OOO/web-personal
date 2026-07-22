@@ -1,0 +1,136 @@
+[
+  {
+    "id": "colabb-world",
+    "title": "Colabb",
+    "slogan": {
+      "es": "Red Socio-Comercial & Ecosistema de Movilidad Serverless",
+      "en": "Socio-Commercial Network & Serverless Mobility Ecosystem"
+    },
+    "description": {
+      "es": "Plataforma monorepo de alto rendimiento (Web, Partner ERP, Admin y Apps Móviles) para descubrimiento, cotización multi-tienda automatizada y despacho de repuestos y servicios automotrices.",
+      "en": "High-performance monorepo platform (Web, Partner ERP, Admin, and Mobile Apps) for discovery, automated multi-store quote splits, and auto parts shipping."
+    },
+    "url": "https://colabb.co",
+    "why": {
+      "es": "Colabb nació para digitalizar e integrar el fragmentado mercado automotriz en Latinoamérica. Conecta a clientes finales con almacenes de repuestos y talleres mecánicos, resolviendo la fricción de buscar repuestos específicos en múltiples ubicaciones al permitir cotizaciones multi-tienda centralizadas y transparentes.",
+      "en": "Colabb was built to digitize and integrate the fragmented automotive market in Latin America. It connects end-users with spare parts stores and mechanical shops, resolving the friction of searching for specific parts across multiple locations through centralized, transparent multi-store quotes."
+    },
+    "what": {
+      "es": "Es un ecosistema transaccional compuesto por una Web App pública para clientes, un portal de administración comercial (Partner ERP) para talleres y tiendas asociadas, y aplicaciones móviles (Expo) para el flujo logístico de mensajería (Couriers), integrando facturación electrónica automática colombiana (DIAN / Factus V2).",
+      "en": "It is a transactional ecosystem consisting of a public Web App for customers, a business management portal (Partner ERP) for partner stores and shops, and mobile apps (Expo) for courier logistics, integrated with automatic Colombian electronic invoicing (DIAN / Factus V2)."
+    },
+    "architecture": {
+      "es": {
+        "Frontend & Aplicaciones": [
+          "Monorepo integrado con pnpm Workspaces y Turborepo que comparte esquemas Zod y tipos de TypeScript de forma estricta entre Web y Móvil.",
+          "Webs corporativas e internas de alto rendimiento construidas con Next.js (App Router) y Tailwind CSS.",
+          "Aplicaciones móviles nativas híbridas compiladas mediante React Native y Expo para mensajeros, clientes y almacenes."
+        ],
+        "Backend & Lógica Financiera": [
+          "Arquitectura Serverless modular en AWS Lambda y API Gateway que expone múltiples microservicios RESTful independientes.",
+          "Algoritmo dinámico para división y direccionamiento inteligente de cotizaciones (quote splits) hacia múltiples almacenes.",
+          "Motor de liquidación monetaria con soporte para cobro de comisiones de plataforma, transferencias netas automatizadas y códigos de retiro seguros."
+        ],
+        "Base de Datos & Seguridad Cloud": [
+          "Base de datos relacional PostgreSQL administrada bajo demanda en AWS RDS mediante el ORM Prisma.",
+          "Integración automática de facturación electrónica colombiana bajo el estándar DIAN a través de Factus API V2.",
+          "Autenticación segura federada con AWS Cognito y túneles de comunicación privados a base de datos mediante AWS SSM."
+        ],
+        "DevOps & Terraform (IaC)": [
+          "Aprovisionamiento e instrumentación automatizada de toda la topología cloud de AWS mediante scripts declarativos de Terraform.",
+          "Pipeline de CI/CD robusto con GitHub Actions que valida código, ejecuta pruebas unitarias y automatiza los deploys sin fricciones."
+        ]
+      },
+      "en": {
+        "Frontend & Applications": [
+          "Integrated Monorepo structure using pnpm Workspaces and Turborepo sharing Zod schemas and TypeScript types strictly between Web and Mobile.",
+          "High-performance corporate and internal portals built with Next.js (App Router) and Tailwind CSS.",
+          "Native hybrid mobile apps compiled via React Native and Expo for couriers, customers, and stores."
+        ],
+        "Backend & Financial Logic": [
+          "Modular Serverless backend architecture using AWS Lambda and API Gateway exposing multiple decoupled RESTful microservices.",
+          "Dynamic multi-store quote split and routing algorithm targeting partner stores geographically.",
+          "Financial settlement engine with platform commissions, automated payouts, and secure pickup authorization codes."
+        ],
+        "Databases & Cloud Security": [
+          "Relational PostgreSQL database managed on AWS RDS utilizing Prisma ORM.",
+          "Integration of Colombian electronic invoicing standard with the DIAN via Factus API V2.",
+          "Federated secure user authentication using AWS Cognito and private database tunnels via AWS SSM."
+        ],
+        "DevOps & Terraform (IaC)": [
+          "Automated provisioning and instrumentation of the entire AWS cloud topology using declarative Terraform configuration files.",
+          "Robust CI/CD pipeline using GitHub Actions that runs tests, validates code, and automates deployments seamlessly."
+        ]
+      }
+    },
+    "technologies": ["Next.js", "React Native (Expo)", "Turborepo", "AWS Lambda", "Terraform", "PostgreSQL", "Prisma ORM", "Factus API (DIAN)", "GitHub Actions"]
+  },
+  {
+    "id": "personal-portfolio",
+    "title": "MA73O Hub",
+    "slogan": {
+      "es": "Espacio Personal de Almacenamiento & Arquitectura Serverless",
+      "en": "Personal Media Storage Hub & Serverless Architecture"
+    },
+    "description": {
+      "es": "Sitio web personal modular bilingüe, hub de almacenamiento multimedia y reproductor global continuo. Diseñado con una estética monocromática estricta y desplegado en la nube.",
+      "en": "Bilingual modular personal site, multimedia storage hub, and continuous global media player. Designed with a strict monochrome aesthetic and deployed to the cloud."
+    },
+    "url": "https://github.com/MA73OOO/personal-web",
+    "why": {
+      "es": "Este espacio no es un sitio web estático simple. Fue diseñado como mi bóveda personal para almacenar y exponer mis recuerdos fotográficos, escritos de mi biblioteca y reproductor musical favorito. Sirve además como un laboratorio para demostrar mis conocimientos de ingeniería asistida por IA y automatización completa de infraestructura cloud bajo principios serverless de alta disponibilidad.",
+      "en": "This space is not just a simple static website. It was designed as my personal vault to store and display my photographic memories, library writings, and favorite music player. It also serves as a laboratory to demonstrate my skills in AI-assisted software engineering and serverless high-availability cloud infrastructure."
+    },
+    "what": {
+      "es": "El sitio cuenta con un reproductor continuo de música en segundo plano que persiste en el DOM para evitar cortes de audio al navegar (mediante React Context), una galería con cuadrícula responsiva estilo collage masonry y soporte multiidioma nativo (ES/EN) con modo oscuro instantáneo. Próximamente integrará un panel de administración web (Web Admin) para gestionar dinámicamente las fotos y escritos.",
+      "en": "The site features a continuous background music player that persists in the DOM to prevent audio cuts when navigating (via React Context), an interactive photo gallery with responsive collage masonry layout, and native bilingual support (ES/EN) with instant dark mode. A web administration panel (Web Admin) will be integrated in the next phase to dynamically manage photos and articles."
+    },
+    "architecture": {
+      "es": {
+        "Frontend / Interfaz de Usuario": [
+          "Arquitectura de Estado Global en React mediante Context para preservar el estado del reproductor iframe de Spotify durante los cambios de ruta sin reiniciar la reproducción.",
+          "Galería fotográfica interactiva de carga diferida (lazy loading) con cuadrícula responsiva estilo masonry collage y Lightbox modal nativo.",
+          "Sistema de diseño tipográfico y visual de alta legibilidad optimizado con fuente Poppins e iconos vectoriales para contraste sobre tramas de puntos.",
+          "Soporte nativo de internacionalización (i18n) en caliente y toggle de tema claro/oscuro instantáneo libre de parpadeos."
+        ],
+        "Backend / Infraestructura Cloud (IaC)": [
+          "Arquitectura Serverless y estática de alto rendimiento alojada en AWS S3 configurada con políticas CORS estrictas para activos multimedia.",
+          "Distribución global de contenidos y almacenamiento en caché de baja latencia mediante CloudFront CDN.",
+          "Seguridad robusta mediante Origin Access Control (OAC) y políticas de mínimo privilegio IAM para restringir accesos directos al S3."
+        ],
+        "DevOps & Automatización (CI/CD)": [
+          "Pipeline en GitHub Actions que ejecuta pruebas y tareas de validación estricta de Next.js (`output: 'export'`) y compila el bundle.",
+          "Sincronización automatizada atómica de archivos estáticos y multimedia optimizados directamente en la nube en AWS S3.",
+          "Invalidación de caché automática en CloudFront tras confirmación de despliegue atómico."
+        ],
+        "Hoja de Ruta / Próximamente": [
+          "Base de datos serverless ligera para almacenar dinámicamente las canciones, fotos y metadatos de escritos.",
+          "Diseño e integración de un Panel Web de Administración (Web Admin) privado para carga dinámica de multimedia y posts sin necesidad de compilar el código."
+        ]
+      },
+      "en": {
+        "Frontend / User Interface": [
+          "React Global State Architecture via Context to preserve the active Spotify iframe player state during route changes without resetting playback.",
+          "Interactive lazy-loading photo gallery with responsive masonry collage layout and native Lightbox modal.",
+          "High-readability typography design system optimized with Poppins font and vector icons for contrast over dot matrix patterns.",
+          "Native on-the-fly internationalization (i18n) and flicker-free instant dark/light mode toggle."
+        ],
+        "Backend / Cloud Infrastructure (IaC)": [
+          "High-performance static and serverless architecture hosted on AWS S3 with strict CORS configurations for media assets.",
+          "Global content delivery and low-latency caching powered by CloudFront CDN.",
+          "Robust security via Origin Access Control (OAC) and IAM minimum privilege policies to restrict direct S3 access."
+        ],
+        "DevOps & Automation (CI/CD)": [
+          "GitHub Actions pipeline running tests and static compilation tasks for Next.js (`output: 'export'`).",
+          "Automated atomic synchronization of static and optimized media assets directly to AWS S3.",
+          "Automatic CloudFront cache invalidation upon atomic deployment confirmation."
+        ],
+        "Roadmap / Coming Soon": [
+          "Lightweight serverless database to store tracks, photos, and writing metadata dynamically.",
+          "Private Web Administration Panel (Web Admin) design and integration to dynamically upload media and write-ups without recompiling the codebase."
+        ]
+      }
+    },
+    "technologies": ["Next.js 15", "React Context", "TypeScript", "Tailwind CSS v4", "Terraform", "AWS (S3, CloudFront)", "GitHub Actions", "Vercel"]
+  }
+]
