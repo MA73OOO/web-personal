@@ -283,7 +283,7 @@ export default function AdminPage() {
         {/* PESTAÑA A: SUBIR FOTOS */}
         {activeTab === "photos" && (
           <form onSubmit={handlePhotoSubmit} className="space-y-4 font-mono text-xs">
-            <h2 className="text-sm font-bold uppercase mb-2">// DETALLES DE LA FOTOGRAFÍA</h2>
+            <h2 className="text-sm font-bold uppercase mb-2">{"// DETALLES DE LA FOTOGRAFÍA"}</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
@@ -384,7 +384,7 @@ export default function AdminPage() {
         {/* PESTAÑA B: CREAR ARTÍCULOS */}
         {activeTab === "articles" && (
           <form onSubmit={handleArticleSubmit} className="space-y-4 font-mono text-xs">
-            <h2 className="text-sm font-bold uppercase mb-2">// NUEVO ESCRITO / ARTÍCULO</h2>
+            <h2 className="text-sm font-bold uppercase mb-2">{"// NUEVO ESCRITO / ARTÍCULO"}</h2>
 
             <div className="space-y-1">
               <label className="text-neutral-500 block">TÍTULO</label>
@@ -471,7 +471,7 @@ export default function AdminPage() {
         {/* PESTAÑA C: AGREGAR CANCIONES */}
         {activeTab === "tracks" && (
           <form onSubmit={handleTrackSubmit} className="space-y-4 font-mono text-xs">
-            <h2 className="text-sm font-bold uppercase mb-2">// AGREGAR PLAYLIST DE SPOTIFY A LA RADIO</h2>
+            <h2 className="text-sm font-bold uppercase mb-2">{"// AGREGAR PLAYLIST DE SPOTIFY A LA RADIO"}</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">

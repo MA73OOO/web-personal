@@ -24,6 +24,9 @@ export default function SubpageHeader({ sectionNumber }: { sectionNumber: string
 
         {/* Right: Language Toggle + Theme Toggle */}
         <div className="flex items-center gap-3">
+          <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 uppercase mr-1 select-none">
+            [ SEC. {sectionNumber} ]
+          </span>
           <LanguageToggle />
           <ThemeToggle />
         </div>
