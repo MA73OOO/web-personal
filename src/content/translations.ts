@@ -5,12 +5,12 @@ export const translations = {
     home: {
       ma73o: {
         title: "MA73O",
-        description: "Un poco de mi, del porque hago lo que hago y con que intencion.",
+        description: "Un poco de mí, de por qué hago lo que hago y con qué intención.",
         buttonText: "INGRESAR AL PERFIL →",
       },
       galeria: {
         title: "GALERIA",
-        description: "La vida sin musica ni fotografias no es vida, no hay memoria...",
+        description: "La vida sin música ni fotografías no es vida, no hay memoria...",
         buttonText: "VER GALERÍA →",
       },
       desarrollo: {
@@ -20,7 +20,7 @@ export const translations = {
       },
       biblioteca: {
         title: "BIBLIOTECA",
-        description: "Escritos personales, opiniones y articulos.",
+        description: "Escritos personales, opiniones y artículos.",
         buttonText: "LEER ESCRITOS →",
       },
     },
@@ -28,7 +28,7 @@ export const translations = {
       subtitle: "MANIFIESTO & PERSPECTIVA",
       perspectiveTitle: "BIENVENIDOS",
       perspectiveText:
-        "Bienvenido a mi espacio en la web. Este rincón está concebido con un propósito artístico y demostrativo de mi filosfia de vida y de todas las pasiones que tengo y tendre. Mi intención es reunir proyectos, ideas, fotografías, canciones, escritos y lo que el tiempo decida sumar, construyendo así mi obra personal. Es una ventana abierta para los curiosos que deseen explorar la manera en la que trabajo y entiendo el mundo. Gracias por estar aquí; espero que encuentres algo que resuene contigo.",
+        "Bienvenido a mi espacio en la web. Este rincón está concebido con un propósito artístico y demostrativo de mi filosofía de vida y de todas las pasiones que tengo y tendré. Mi intención es reunir proyectos, ideas, fotografías, canciones, escritos y lo que el tiempo decida sumar, construyendo así mi obra personal. Es una ventana abierta para los curiosos que deseen explorar la manera en la que trabajo y entiendo el mundo. Gracias por estar aquí; espero que encuentres algo que resuene contigo.",
       sectionsTitle: "EL PROPÓSITO DE ESTE ESPACIO",
       galeriaIntroTitle: "GALERÍA",
       galeriaIntroDesc:

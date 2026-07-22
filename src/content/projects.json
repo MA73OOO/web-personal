@@ -132,5 +132,109 @@
       }
     },
     "technologies": ["Next.js 15", "React Context", "TypeScript", "Tailwind CSS v4", "Terraform", "AWS (S3, CloudFront)", "GitHub Actions", "Vercel"]
+  },
+  {
+    "id": "code-blueprints",
+    "title": "CodeBlueprints",
+    "slogan": {
+      "es": "Infraestructura como Código, Esquemas y Boilerplates Serverless",
+      "en": "Infrastructure as Code, Schemas & Serverless Boilerplates"
+    },
+    "description": {
+      "es": "Ecosistema de plantillas de desarrollo listas para producción en AWS. Incluye aprovisionamiento modular con Terraform, gestión de bases de datos relacionales con Prisma ORM y configuraciones optimizadas para Serverless.",
+      "en": "Production-ready AWS infrastructure blueprints and development templates. Features modular Terraform configurations, relational database management with Prisma ORM, and optimized serverless boilerplates."
+    },
+    "url": "https://github.com/MA73OOO/code-blueprints",
+    "why": {
+      "es": "Creado para automatizar y estandarizar la arquitectura en la nube de proyectos web modernos. Elimina el trabajo repetitivo de configurar entornos de staging y producción en AWS, permitiendo desplegar de manera ágil y segura bajo el principio de pago por uso.",
+      "en": "Built to automate and standardize cloud architecture for modern web applications. It eliminates the repetitive task of configuring AWS staging and production environments, enabling fast and secure deployments under a pay-as-you-go model."
+    },
+    "what": {
+      "es": "El repositorio provee configuraciones modulares listas para usar. Incluye la orquestación de recursos de red y cómputo en AWS (S3, CloudFront, Lambdas), manejo de pools de conexión de bases de datos con RDS Proxy e integraciones comunes en backend como autenticación JWT con Cognito.",
+      "en": "The repository provides ready-to-use modular configurations. It handles AWS networking and compute provisioning (S3, CloudFront, Lambdas), database connection pooling using RDS Proxy, and common backend integrations like JWT authentication with Cognito."
+    },
+    "architecture": {
+      "es": {
+        "Infraestructura & Nube": [
+          "Aprovisionamiento modular con Terraform para hosting estático seguro (S3 + CloudFront OAC).",
+          "Configuración serverless en AWS API Gateway y AWS Lambda para controladores desacoplados."
+        ],
+        "Capa de Datos & Base de Datos": [
+          "Modelado y migraciones de bases de datos relacionales mediante Prisma ORM.",
+          "Manejador Singleton de conexión de Prisma optimizado para evitar saturación de pools en entornos serverless."
+        ],
+        "Seguridad & Integraciones": [
+          "Autenticación segura basada en tokens JWT con integración nativa a AWS Cognito.",
+          "Acceso privado y seguro a bases de datos RDS a través de túneles AWS SSM."
+        ]
+      },
+      "en": {
+        "Infrastructure & Cloud": [
+          "Modular Terraform provisioning for secure static hosting (S3 + CloudFront OAC).",
+          "Serverless configurations using AWS API Gateway and AWS Lambda for decoupled microservices."
+        ],
+        "Data Layer & Database": [
+          "Relational database modeling and migrations using Prisma ORM.",
+          "Singleton Prisma connection patterns optimized to prevent connection exhaustion in serverless runtimes."
+        ],
+        "Security & Integrations": [
+          "Secure token-based JWT authentication with native AWS Cognito integration.",
+          "Private and secure RDS database access via AWS SSM communication tunnels."
+        ]
+      }
+    },
+    "technologies": ["Terraform", "AWS Lambda", "Prisma ORM", "PostgreSQL", "AWS Cognito", "API Gateway", "Node.js", "TypeScript"]
+  },
+  {
+    "id": "dev-second-brain",
+    "title": "DevVault",
+    "slogan": {
+      "es": "Bóveda de Obsidian, Arquitectura de Software y Bitácora de Aprendizaje",
+      "en": "Obsidian Vault, Software Architecture & Developer Second Brain"
+    },
+    "description": {
+      "es": "Bóveda pública de Obsidian orientada a la ingeniería de software. Centraliza notas sobre patrones de diseño, arquitectura cloud, desarrollo asistido por IA (Agentic Workflows) y reflexiones de desarrollo.",
+      "en": "Public Obsidian vault tailored for software engineering. Centralizes notes on design patterns, cloud architecture, AI-assisted development (Agentic Workflows), and technical reflections."
+    },
+    "url": "https://github.com/MA73OOO/dev-second-brain",
+    "why": {
+      "es": "Diseñado como un cerebro secundario para catalogar conceptos complejos y evitar la pérdida de conocimiento técnico. Sirve tanto de bitácora personal de estudio como de recurso público y abierto para desarrolladores que busquen comprender arquitecturas modernas sin rodeos.",
+      "en": "Conceived as a second brain to catalog complex software concepts and prevent technical knowledge decay. It serves both as a personal study log and an open resource for developers looking to understand modern architectures directly."
+    },
+    "what": {
+      "es": "La bóveda contiene una estructura jerárquica de notas interconectadas que cubren desde principios de diseño (SOLID, DDD) y optimizaciones de base de datos, hasta guías avanzadas sobre cómo estructurar prompts y trabajar con agentes autónomos de programación.",
+      "en": "The vault features a hierarchical structure of interconnected notes covering everything from software design principles (SOLID, DDD) and database optimization, to advanced guides on prompting and working with autonomous agent developers."
+    },
+    "architecture": {
+      "es": {
+        "Estructura de la Bóveda": [
+          "Organización sistemática de carpetas dividida por áreas de especialización (Frontend, Backend, Cloud, AI, Arquitectura).",
+          "Interconexión densa mediante enlaces internos (wikilinks) de Obsidian para mapear dependencias conceptuales."
+        ],
+        "Contenido de Ingeniería": [
+          "Documentación detallada sobre despliegues serverless, control de concurrencia y optimizaciones de caché en CDN.",
+          "Manuales de referencia para protocolos de comunicación e integraciones externas como Facturación Electrónica."
+        ],
+        "Desarrollo con Agentes & IA": [
+          "Guías prácticas y reglas contextuales estructuradas para potenciar el desarrollo asistido por LLMs.",
+          "Estrategias de refinamiento iterativo y diseño de prompts para evitar alucinaciones en código complejo."
+        ]
+      },
+      "en": {
+        "Vault Structure": [
+          "Systematic folder structure divided by areas of expertise (Frontend, Backend, Cloud, AI, Architecture).",
+          "Interconnected note network utilizing Obsidian wikilinks to map conceptual dependencies."
+        ],
+        "Engineering Content": [
+          "Detailed documentation on serverless deployments, database concurrency, and CDN caching optimization.",
+          "Reference manuals for API protocols and specific external integrations like electronic invoicing."
+        ],
+        "AI & Agentic Workflows": [
+          "Practical guides and structured agent rules designed to leverage LLM-assisted development.",
+          "Iterative refinement strategies and prompt designs to avoid code hallucinations in complex environments."
+        ]
+      }
+    },
+    "technologies": ["Obsidian", "Markdown", "Software Architecture", "AI Engineering", "Git", "Knowledge Management"]
   }
 ]

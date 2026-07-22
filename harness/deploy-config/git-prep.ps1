@@ -8,7 +8,7 @@ node harness/frontend/validate-build.js
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""
-    Write-Host "[OK] El proyecto esta limpio y listo para commit/push." -ForegroundColor Green
+    Write-Host "[OK] El proyecto está limpio y listo para commit/push." -ForegroundColor Green
 } else {
     Write-Host ""
     Write-Host "[FAIL] No realices commit hasta corregir los errores indicados." -ForegroundColor Red

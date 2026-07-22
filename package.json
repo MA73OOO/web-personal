@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "npm run build && aws s3 sync out/ s3://ma73o-hub-site-681a6b26 --delete --profile ma730-dev && aws cloudfront create-invalidation --distribution-id E34VKHZ37TZNOR --paths \"/*\" --profile ma730-dev",
     "start": "next start",
     "lint": "eslint",
     "harness:frontend": "node harness/frontend/validate-build.js",

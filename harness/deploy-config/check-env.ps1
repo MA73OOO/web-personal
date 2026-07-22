@@ -28,4 +28,4 @@ if (Test-Path ".agents/AGENTS.md") {
 }
 
 Write-Host ""
-Write-Host "[OK] Verificacion de entorno completada." -ForegroundColor Cyan
+Write-Host "[OK] Verificación de entorno completada." -ForegroundColor Cyan

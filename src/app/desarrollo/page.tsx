@@ -7,6 +7,7 @@ import experience from "@/content/experience.json";
 import projects from "@/content/projects.json";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/content/translations";
+import { getAssetUrl } from "@/utils/assets";
 
 export default function DesarrolloPage() {
   const { language } = useLanguage();
@@ -306,9 +307,10 @@ export default function DesarrolloPage() {
       {/* 6. SECCIÓN: BOTÓN DESCARGAR CV */}
       <section className="pt-8 border-t border-neutral-300 dark:border-neutral-800 text-center">
         <a
-          href="/Mateo_Henao_Rangel_CV.pdf"
+          href={getAssetUrl("/Mateo_Henao_Rangel_CV.pdf")}
           target="_blank"
           rel="noopener noreferrer"
+
           className="inline-flex items-center justify-center gap-3 px-8 py-4 btn-primary rounded-none shadow-xl hover:scale-105 transition-transform"
         >
           <span>📄 {language === "es" ? "DESCARGAR CURRÍCULUM (PDF)" : "DOWNLOAD RESUME (PDF)"}</span>

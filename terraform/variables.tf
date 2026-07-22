@@ -4,6 +4,13 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "aws_profile" {
+  description = "Perfil de credenciales de AWS CLI a utilizar"
+  type        = string
+  default     = "default"
+}
+
+
 variable "project_name" {
   description = "Nombre del proyecto"
   type        = string

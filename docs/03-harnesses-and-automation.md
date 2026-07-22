@@ -1,9 +1,9 @@
-# 03. Bóveda de Harneses y Automatización (Harnesses & Automation)
+# 03. Bóveda de Arneses y Automatización (Harnesses & Automation)
 
 ## 📌 Filosofía
-Los harneses (`harnesses`) son herramientas de software, scripts y validadores automatizados diseñados para garantizar la calidad del código, el estado del entorno y la compatibilidad con el pipeline de despliegue antes de realizar cualquier commit o integración.
+Los arneses (`harnesses`) son herramientas de software, scripts y validadores automatizados diseñados para garantizar la calidad del código, el estado del entorno y la compatibilidad con el pipeline de despliegue antes de realizar cualquier commit o integración.
 
-En este repositorio, los harneses están divididos por **módulos de responsabilidad aislados** para permitir escalabilidad y versionado controlado.
+En este repositorio, los arneses están divididos por **módulos de responsabilidad aislados** para permitir escalabilidad y versionado controlado.
 
 ---
 

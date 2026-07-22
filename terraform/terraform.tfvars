@@ -1,0 +1,5 @@
+aws_region   = "us-east-1"
+project_name = "ma73o-hub"
+environment  = "prod"
+domain_name  = "ma730.lat"
+aws_profile  = "ma730-dev"

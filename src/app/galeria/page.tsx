@@ -41,7 +41,7 @@ function GaleriaContent() {
       {/* Header section */}
       <section className="space-y-2 text-center md:text-left pt-2 sm:pt-4">
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white uppercase">
-          {language === "es" ? "GALERIA" : "GALLERY"}
+          {language === "es" ? "GALERÍA" : "GALLERY"}
         </h1>
         <p className="text-sm md:text-base font-mono text-neutral-600 dark:text-neutral-400">
           {language === "es"
@@ -149,7 +149,7 @@ function GaleriaContent() {
             {/* Step 2: "Sígueme en mi spotify" + Green Button "MA73O" */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 py-2 text-center">
               <span className="text-sm sm:text-base md:text-lg font-mono text-neutral-800 dark:text-neutral-200">
-                {language === "es" ? "Sígueme en mi spotify" : "Follow me on Spotify"}
+                {language === "es" ? "Sígueme en mi Spotify" : "Follow me on Spotify"}
               </span>
               <a
                 href="https://open.spotify.com/user/sl1djsjw24juot8wucfg6bqqf"

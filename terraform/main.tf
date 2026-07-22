@@ -13,7 +13,8 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
+  profile = var.aws_profile
 
   default_tags {
     tags = {
@@ -91,6 +92,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
   comment             = "CDN para ${var.project_name} (${var.environment})"
+  aliases             = var.domain_name != "" ? [var.domain_name, "www.${var.domain_name}"] : []
 
   # Origen 1: Sitio Web Estático (Next.js)
   origin {
@@ -111,7 +113,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     target_origin_id       = "S3-Website-Origin"
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
-    viewer_protocol_policy = "redirect-to-https font-src 'self'"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 86400
     max_ttl                = 31536000
@@ -159,7 +161,10 @@ resource "aws_cloudfront_distribution" "cdn" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    cloudfront_default_certificate = var.domain_name == "" ? true : false
+    acm_certificate_arn            = var.domain_name != "" ? aws_acm_certificate_validation.cert_validation[0].certificate_arn : null
+    ssl_support_method             = var.domain_name != "" ? "sni-only" : null
+    minimum_protocol_version       = var.domain_name != "" ? "TLSv1.2_2021" : "TLSv1"
   }
 }
 
@@ -208,4 +213,24 @@ data "aws_iam_policy_document" "media_s3_policy" {
       values   = [aws_cloudfront_distribution.cdn.arn]
     }
   }
+}
+
+# 6. Certificado SSL/TLS en ACM (solo si domain_name no está vacío)
+resource "aws_acm_certificate" "cert" {
+  count             = var.domain_name != "" ? 1 : 0
+  domain_name       = var.domain_name
+  validation_method = "DNS"
+
+  subject_alternative_names = [
+    "www.${var.domain_name}"
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_acm_certificate_validation" "cert_validation" {
+  count           = var.domain_name != "" ? 1 : 0
+  certificate_arn = aws_acm_certificate.cert[0].arn
 }

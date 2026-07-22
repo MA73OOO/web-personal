@@ -4,7 +4,7 @@ Esta carpeta contiene scripts de automatización, arneses de pruebas y validador
 
 ---
 
-## 📋 Lista de Harneses Disponibles
+## 📋 Lista de Arneses Disponibles
 
 | Arnés / Script              | Propósito                                                                                         | Uso                              |
 | :----------------------------| :--------------------------------------------------------------------------------------------------| :---------------------------------|

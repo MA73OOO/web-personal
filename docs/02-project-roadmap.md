@@ -9,7 +9,7 @@ Este documento detalla las fases de construcción incremental de la web personal
 ### 🟢 Fase 1: Fundamentos del Repositorio y Bóveda (Completado / En progreso)
 - [x] Inicialización del repositorio Git local y remoto (`MA73OOO/web-personal`).
 - [x] Configuración de la Bóveda de Documentación (`docs/01`, `docs/02`, `docs/03`).
-- [x] Configuración de la Bóveda de Harneses (`harness/frontend`, `harness/deploy-config`, `harness/content`).
+- [x] Configuración de la Bóveda de Arneses (`harness/frontend`, `harness/deploy-config`, `harness/content`).
 - [x] Estructura de contexto para agentes (`.agents/AGENTS.md`, `.agents/gemini/`, `.agents/claude/`, etc.).
 - [x] Creación de `.gitignore` base.
 
