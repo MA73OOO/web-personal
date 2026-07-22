@@ -8,8 +8,10 @@ Welcome agent! This document contains the context, architectural rules, and proj
 * **Type:** Personal Showcase & Portfolio Web Application (SPA).
 * **Target Stack:**
   * **Frontend:** Next.js (App Router, Static Export `output: 'export'`), Tailwind CSS / Vanilla CSS, TypeScript.
-  * **Content Store:** Git-based JSON and Markdown files (no external database server).
-  * **Hosting & Delivery:** AWS S3 Bucket (Static Site Hosting) + AWS CloudFront (CDN) + AWS Route53 (DNS / SSL).
+  * **Backend / APIs:** Node.js Lambdas + AWS API Gateway + Prisma ORM.
+  * **Database:** AWS RDS PostgreSQL Instance.
+  * **Auth / Identity:** AWS Cognito User Pool (Admin Access Control).
+  * **Hosting & Delivery:** AWS S3 Bucket (Static Site Hosting) + AWS S3 Bucket (Multimedia) + AWS CloudFront (CDN) + AWS Route53 (DNS / SSL).
   * **Infrastructure as Code (IaC):** Terraform.
   * **CI/CD:** GitHub Actions (Automated `next build` & sync `out/` to S3 + CloudFront cache invalidation).
 
@@ -31,14 +33,21 @@ web-personal/
 │   └── 03-harnesses-and-automation.md
 ├── harness/                    # Developer & Git harness automation tools
 │   ├── README.md
-│   ├── validate-build.js
-│   ├── check-env.ps1
-│   └── git-prep.ps1
+│   ├── deploy/
+│   │   └── deploy-all.js       # Orquestador del despliegue completo
+│   ├── validations/
+│   │   ├── validate-build.js   # Validador de TypeScript y Next.js Build
+│   │   ├── check-env.ps1       # Auditoría de entorno local
+│   │   └── git-prep.ps1        # Pre-commit Hook
+│   └── content/
+│       └── validate-schemas.js # Validador de JSON/Markdown locales
 ├── terraform/                  # AWS Infrastructure modules & environments
+├── backend/                    # Node.js Serverless Backend (Prisma, Lambdas, esbuild)
 ├── src/                        # React SPA source code
+│   ├── app/                    # Next.js Pages and Route Handlers (Admin, Galería, Biblioteca...)
 │   ├── assets/                 # Images, icons, static documents
 │   ├── components/             # Reusable UI components
-│   ├── content/                # Content files (JSON/Markdown for projects, Figma links, articles)
+│   ├── content/                # Content files (JSON fallbacks & translations)
 │   ├── hooks/                  # Custom React hooks
 │   └── styles/                 # Design tokens and styles
 └── README.md
@@ -47,7 +56,7 @@ web-personal/
 ---
 
 ## 3. Key Technical Principles
-1. **Zero-Backend / Git-Ops Content:** All showcase items (Figma designs, Colabb project highlights, LinkedIn references, articles) are managed as typed JSON/Markdown schema files inside `src/content/`.
+1. **Hybrid Content Store:** Showcase items (photos, Spotify playlists, articles) are managed dynamically through RDS PostgreSQL (via the Admin panel) with static fallback JSON files inside `src/content/` to ensure fast static compilation and local resilience.
 2. **IaC First:** Infrastructure changes MUST be declared in `terraform/`. No manual AWS Web Console edits.
 3. **Design Excellence:**
    * Modern typography (Google Fonts: Inter, Outfit, or Space Grotesk).
@@ -60,4 +69,4 @@ web-personal/
 
 ## 4. Workflow Rules
 * Always update relevant documentation in `docs/` when introducing architectural changes.
-* Maintain clean component separation in `src/components/`.
+* Maintain clean component separation in `src/components/` and colocate page services (`services.ts`) next to page views (`page.tsx`) in `src/app/`.

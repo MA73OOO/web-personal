@@ -10,7 +10,7 @@ console.log('📝 [Harness - Content] Verificando esquema de contenidos en src/c
 const contentDir = path.join(process.cwd(), 'src', 'content');
 
 if (!fs.existsSync(contentDir)) {
-  console.log('ℹ️ [Harness - Content] La carpeta src/content aún no existe. Se creará en la Fase 3.');
+  console.log('ℹ️ [Harness - Content] La carpeta src/content aún no existe.');
   process.exit(0);
 }
 

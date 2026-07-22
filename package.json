@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "deploy": "npm run build && aws s3 sync out/ s3://ma73o-hub-site-681a6b26 --delete --profile ma730-dev && aws cloudfront create-invalidation --distribution-id E34VKHZ37TZNOR --paths \"/*\" --profile ma730-dev",
-    "deploy:all": "node harness/deploy-all.js",
+    "deploy:all": "node harness/deploy/deploy-all.js",
     "start": "next start",
     "lint": "eslint",
-    "harness:frontend": "node harness/frontend/validate-build.js",
-    "harness:env": "powershell -ExecutionPolicy Bypass -File ./harness/deploy-config/check-env.ps1",
-    "harness:git": "powershell -ExecutionPolicy Bypass -File ./harness/deploy-config/git-prep.ps1",
+    "harness:frontend": "node harness/validations/validate-build.js",
+    "harness:env": "powershell -ExecutionPolicy Bypass -File ./harness/validations/check-env.ps1",
+    "harness:git": "powershell -ExecutionPolicy Bypass -File ./harness/validations/git-prep.ps1",
     "harness:content": "node harness/content/validate-schemas.js"
   },
   "dependencies": {
