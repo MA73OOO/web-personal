@@ -1,0 +1,25 @@
+{
+  "name": "ma73o-hub-backend",
+  "version": "1.0.0",
+  "description": "Backend serverless de AWS Lambda y Prisma para el portafolio personal",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node esbuild.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.600.0",
+    "@aws-sdk/client-s3": "^3.600.0",
+    "@aws-sdk/s3-request-presigner": "^3.600.0",
+    "@prisma/client": "^6.19.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.140",
+    "@types/node": "^20.14.9",
+    "esbuild": "^0.21.5",
+    "prisma": "^6.19.3",
+    "typescript": "^5.5.2"
+  }
+}

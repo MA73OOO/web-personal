@@ -29,3 +29,25 @@ output "dns_validation_records" {
     }
   ] : []
 }
+
+output "cognito_user_pool_id" {
+  description = "ID del User Pool de AWS Cognito"
+  value       = aws_cognito_user_pool.user_pool.id
+}
+
+output "cognito_user_pool_client_id" {
+  description = "ID del Cliente de la aplicación de AWS Cognito"
+  value       = aws_cognito_user_pool_client.user_pool_client.id
+}
+
+output "database_endpoint" {
+  description = "Endpoint de conexión de la Base de Datos RDS PostgreSQL"
+  value       = aws_db_instance.postgres.endpoint
+}
+
+output "database_password" {
+  description = "Contraseña de la Base de Datos RDS PostgreSQL"
+  value       = random_password.db_password.result
+  sensitive   = true
+}
+

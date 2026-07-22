@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+// 1. Modelo de Usuario (Administrador sincronizado con AWS Cognito)
+model User {
+  id        String   @id // Corresponde al 'sub' UUID generado por AWS Cognito
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 2. Modelo de Fotos (Galería fotográfica interactiva)
+model Photo {
+  id          String   @id @default(uuid())
+  title       String
+  url         String // Enlace al archivo en el bucket S3 multimedia (media)
+  year        String // Ej: "2026", "2025"
+  date        String // Ej: "2026-02-14"
+  category    String // Ej: "Arquitectura", "Nocturna", "Naturaleza"
+  location    String // Ej: "Páramo de Sumapaz"
+  aspectRatio String // Ej: "aspect-[4/5]", "aspect-[16/9]"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 3. Modelo de Artículos / Escritos (Biblioteca)
+model Article {
+  id          String    @id @default(uuid())
+  slug        String    @unique
+  title       String
+  subtitle    String
+  content     String    @db.Text // Texto completo en formato Markdown
+  published   Boolean   @default(false)
+  category    String // Ej: "AI", "Cloud", "Architecture"
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// 4. Modelo de Canciones (Radio / Spotify / MP3)
+model Track {
+  id        String   @id @default(uuid())
+  title     String
+  artist    String
+  album     String
+  url       String // Enlace al archivo .mp3 en S3
+  cover     String // Enlace a la imagen de portada
+  createdAt DateTime @default(now())
+}

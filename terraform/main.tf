@@ -234,3 +234,132 @@ resource "aws_acm_certificate_validation" "cert_validation" {
   count           = var.domain_name != "" ? 1 : 0
   certificate_arn = aws_acm_certificate.cert[0].arn
 }
+
+# ==========================================
+# 7. AWS COGNITO (Autenticación de Usuarios)
+# ==========================================
+
+resource "aws_cognito_user_pool" "user_pool" {
+  name = "${var.project_name}-user-pool"
+
+  username_attributes      = ["email"]
+  auto_verified_attributes = ["email"]
+
+  password_policy {
+    minimum_length    = 8
+    require_lowercase = true
+    require_numbers   = true
+    require_symbols   = true
+    require_uppercase = true
+  }
+
+  schema {
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    name                     = "name"
+    required                 = true
+
+    string_attribute_constraints {
+      min_length = 1
+      max_length = 256
+    }
+  }
+}
+
+resource "aws_cognito_user_pool_client" "user_pool_client" {
+  name         = "${var.project_name}-user-pool-client"
+  user_pool_id = aws_cognito_user_pool.user_pool.id
+
+  explicit_auth_flows = [
+    "ALLOW_USER_PASSWORD_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH"
+  ]
+
+  generate_secret = false
+}
+
+# Creación del usuario administrador por defecto
+resource "aws_cognito_user" "admin" {
+  user_pool_id = aws_cognito_user_pool.user_pool.id
+  username     = "henaorangelmateo@gmail.com"
+
+  attributes = {
+    email          = "henaorangelmateo@gmail.com"
+    email_verified = "true"
+    name           = "Mateo Henao Rangel"
+  }
+
+  # Contraseña inicial temporal que Cognito te pedirá cambiar en el primer inicio de sesión
+  temporary_password = "AdminPassword123!"
+}
+
+
+# ==========================================
+# 8. BASE DE DATOS (AWS RDS PostgreSQL)
+# ==========================================
+
+# Generador de contraseña aleatoria segura para la BD
+resource "random_password" "db_password" {
+  length  = 16
+  special = false
+}
+
+# Obtener la VPC por defecto
+data "aws_vpc" "default" {
+  default = true
+}
+
+# Obtener las subredes por defecto de la VPC
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+}
+
+# Grupo de seguridad de la base de datos (PostgreSQL puerto 5432)
+resource "aws_security_group" "db_sg" {
+  name        = "${var.project_name}-db-sg"
+  description = "Permitir acceso a PostgreSQL"
+  vpc_id      = data.aws_vpc.default.id
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Abierto para permitir migraciones locales y Lambdas
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Grupo de subredes RDS
+resource "aws_db_subnet_group" "db_subnet" {
+  name       = "${var.project_name}-db-subnet-group"
+  subnet_ids = data.aws_subnets.default.ids
+}
+
+# Instancia de base de datos RDS PostgreSQL (Capa gratuita db.t4g.micro)
+resource "aws_db_instance" "postgres" {
+  identifier             = "${var.project_name}-db"
+  allocated_storage      = 20
+  max_allocated_storage  = 100
+  storage_type           = "gp3"
+  engine                 = "postgres"
+  engine_version         = "16.3"
+  instance_class         = "db.t4g.micro" # Capa gratuita elegible
+  db_name                = "ma73ohubdb"
+  username               = "postgres"
+  password               = random_password.db_password.result
+  db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
+  publicly_accessible    = true # Para simplificar las migraciones desde tu entorno local
+  skip_final_snapshot    = true
+}
+
