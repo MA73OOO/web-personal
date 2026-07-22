@@ -45,13 +45,10 @@ model Article {
   updatedAt   DateTime  @updatedAt
 }
 
-// 4. Modelo de Canciones (Radio / Spotify / MP3)
 model Track {
-  id        String   @id @default(uuid())
-  title     String
-  artist    String
-  album     String
-  url       String // Enlace al archivo .mp3 en S3
-  cover     String // Enlace a la imagen de portada
-  createdAt DateTime @default(now())
+  id          String   @id // ID de la playlist de Spotify (ej. "1iQ2ovIssKp5YiXMpKJJ1Q")
+  title       String
+  description String
+  url         String
+  createdAt   DateTime @default(now())
 }

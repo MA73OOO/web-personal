@@ -51,3 +51,9 @@ output "database_password" {
   sensitive   = true
 }
 
+output "api_endpoint" {
+  description = "URL base pública de la API Gateway HTTP para consumir las Lambdas"
+  value       = aws_apigatewayv2_api.http_api.api_endpoint
+}
+
+

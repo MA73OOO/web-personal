@@ -36,12 +36,10 @@ async function build() {
       external: ["@aws-sdk/*"],
     });
 
-    // 2. Copiar el motor de consultas (Query Engine) de Prisma para Linux (Lambda)
     const engineSource = path.join(
       __dirname,
       "node_modules",
-      ".prisma",
-      "client",
+      "prisma",
       "libquery_engine-rhel-openssl-3.0.x.so.node"
     );
     const engineDest = path.join(

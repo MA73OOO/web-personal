@@ -1,14 +1,22 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import spotifyConfig from "@/content/spotify.json";
+
+export interface PlaylistType {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+}
 
 interface RadioContextType {
   activePlaylistIndex: number;
   setActivePlaylistIndex: (index: number) => void;
   isMinimized: boolean;
   setIsMinimized: (min: boolean) => void;
-  currentPlaylist: (typeof spotifyConfig.playlists)[0];
+  currentPlaylist: PlaylistType;
+  playlists: PlaylistType[];
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
@@ -16,9 +24,23 @@ const RadioContext = createContext<RadioContextType | undefined>(undefined);
 export function RadioProvider({ children }: { children: React.ReactNode }) {
   const [activePlaylistIndex, setActivePlaylistIndex] = useState(0);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [playlists, setPlaylists] = useState<PlaylistType[]>(spotifyConfig.playlists);
 
-  const currentPlaylist =
-    spotifyConfig.playlists[activePlaylistIndex] || spotifyConfig.playlists[0];
+  useEffect(() => {
+    fetch("https://7jddb01yw9.execute-api.us-east-1.amazonaws.com/tracks")
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPlaylists(data);
+        }
+      })
+      .catch((err) => console.error("Error al cargar playlists dinámicas de AWS:", err));
+  }, []);
+
+  const currentPlaylist = playlists[activePlaylistIndex] || playlists[0] || spotifyConfig.playlists[0];
 
   return (
     <RadioContext.Provider
@@ -28,6 +50,7 @@ export function RadioProvider({ children }: { children: React.ReactNode }) {
         isMinimized,
         setIsMinimized,
         currentPlaylist,
+        playlists,
       }}
     >
       {children}

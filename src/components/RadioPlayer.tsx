@@ -2,7 +2,6 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRadio } from "@/context/RadioContext";
-import spotifyConfig from "@/content/spotify.json";
 
 export default function RadioPlayer({ inline = false }: { inline?: boolean }) {
   const pathname = usePathname();
@@ -13,6 +12,7 @@ export default function RadioPlayer({ inline = false }: { inline?: boolean }) {
     isMinimized,
     setIsMinimized,
     currentPlaylist,
+    playlists,
   } = useRadio();
 
   const isGaleriaMusicTab =
@@ -30,7 +30,7 @@ export default function RadioPlayer({ inline = false }: { inline?: boolean }) {
 
   const cyclePlaylist = () => {
     setActivePlaylistIndex(
-      (activePlaylistIndex + 1) % spotifyConfig.playlists.length
+      (activePlaylistIndex + 1) % playlists.length
     );
   };
 
@@ -75,7 +75,7 @@ export default function RadioPlayer({ inline = false }: { inline?: boolean }) {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            {spotifyConfig.playlists.length > 1 && (
+            {playlists.length > 1 && (
               <button
                 onClick={cyclePlaylist}
                 title="Cambiar Playlist"

@@ -53,7 +53,7 @@ async function handleGet(headers: Record<string, string>): Promise<APIGatewayPro
   };
 }
 
-// 2. Agregar una nueva canción
+// 2. Agregar una nueva playlist de Spotify
 async function handlePost(
   event: APIGatewayProxyEvent,
   headers: Record<string, string>
@@ -62,23 +62,22 @@ async function handlePost(
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el cuerpo." }) };
   }
 
-  const { title, artist, album, url, cover } = JSON.parse(event.body);
+  const { id, title, description, url } = JSON.parse(event.body);
 
-  if (!title || !artist || !url) {
+  if (!id || !title || !description || !url) {
     return {
       statusCode: 400,
       headers,
-      body: JSON.stringify({ error: "Título, artista y URL del archivo mp3 son obligatorios." }),
+      body: JSON.stringify({ error: "El ID de Spotify, el título, la descripción y la URL son obligatorios." }),
     };
   }
 
   const track = await prisma.track.create({
     data: {
+      id,
       title,
-      artist,
-      album: album || "Single",
+      description,
       url,
-      cover: cover || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80",
     },
   });
 
@@ -89,7 +88,7 @@ async function handlePost(
   };
 }
 
-// 3. Eliminar una canción por ID
+// 3. Eliminar una playlist por ID de Spotify
 async function handleDelete(
   event: APIGatewayProxyEvent,
   headers: Record<string, string>
@@ -97,7 +96,7 @@ async function handleDelete(
   const id = event.pathParameters?.id;
 
   if (!id) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el ID de la canción." }) };
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el ID de Spotify de la playlist." }) };
   }
 
   await prisma.track.delete({ where: { id } });
@@ -105,6 +104,6 @@ async function handleDelete(
   return {
     statusCode: 200,
     headers,
-    body: JSON.stringify({ success: true, message: "Canción eliminada de la radio." }),
+    body: JSON.stringify({ success: true, message: "Playlist eliminada de la radio con éxito." }),
   };
 }

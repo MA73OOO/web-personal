@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SubpageHeader from "@/components/SubpageHeader";
 import RadioPlayer from "@/components/RadioPlayer";
-import photos from "@/content/photos.json";
+import defaultPhotos from "@/content/photos.json";
 import spotifyConfig from "@/content/spotify.json";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRadio } from "@/context/RadioContext";
+import { fetchPhotos, PhotoType } from "./services";
 
 function GaleriaContent() {
   const router = useRouter();
@@ -20,6 +21,19 @@ function GaleriaContent() {
   const [selectedYear, setSelectedYear] = useState<string>("TODAS");
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
 
+  // Cargar fotos dinámicamente con fallback estático para exportación rápida
+  const [photoList, setPhotoList] = useState<PhotoType[]>(defaultPhotos as PhotoType[]);
+
+  useEffect(() => {
+    fetchPhotos()
+      .then((data) => {
+        if (data.length > 0) {
+          setPhotoList(data);
+        }
+      })
+      .catch((err) => console.error("Error al cargar fotos de la API de AWS:", err));
+  }, []);
+
   const years = ["TODAS", "2026", "2025", "2024"];
 
   const setTab = (tab: "fotos" | "musica") => {
@@ -31,8 +45,8 @@ function GaleriaContent() {
 
   const filteredPhotos =
     selectedYear === "TODAS"
-      ? photos
-      : photos.filter((p) => p.year === selectedYear);
+      ? photoList
+      : photoList.filter((p) => p.year === selectedYear);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6 sm:space-y-8 font-sans text-neutral-900 dark:text-neutral-100 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500 relative pb-20">
