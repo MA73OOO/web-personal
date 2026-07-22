@@ -31,6 +31,20 @@ model Photo {
   updatedAt   DateTime @updatedAt
 }
 
+// 2b. Categorías de fotografías (gestionadas desde el panel Admin)
+model PhotoCategory {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+// 2c. Ubicaciones / Ciudades de fotografías (gestionadas desde el panel Admin)
+model PhotoLocation {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
 // 3. Modelo de Artículos / Escritos (Biblioteca)
 model Article {
   id          String    @id @default(uuid())

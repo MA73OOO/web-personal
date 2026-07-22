@@ -22,9 +22,16 @@ export const handler = async (
     "Access-Control-Allow-Methods": "POST,OPTIONS",
     "Content-Type": "application/json",
   };
+PS C: \Users\PC\Desktop\personal - web > aws s3 ls s3://ma73o-hub-media-681a6b26/ --recursive --profile ma730-dev                             
+  2026-07 - 22 15: 30: 35      46718 photos / 14d59c20 - bcad - 42bf - a27a - 9f7796eaa488.jpg
+  2026-07 - 22 15: 12: 29      10746 photos / 1bd0b3a6 - 7b4c - 403b - aed7 - def2d0c8ca82.jpg
+  2026-07 - 22 15: 12: 29      58573 photos / 27906b55 - abeb - 4d69 - 9d5b -058700562f90.jpg
+  2026-07 - 22 15: 12: 29      58573 photos / 31cef08b - 7326 - 4b40 - a172 - 433da45ccdb5.jpg
+  2026-07 - 22 15: 15:02      58573 photos
+  const method = (event as any).requestContext?.http?.method || event.httpMethod;
 
   // Manejar la petición Preflight de CORS (OPTIONS)
-  if (event.httpMethod === "OPTIONS") {
+  if (method === "OPTIONS") {
     return {
       statusCode: 200,
       headers,

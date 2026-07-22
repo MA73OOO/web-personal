@@ -73,6 +73,12 @@ resource "aws_apigatewayv2_route" "photos_post" {
   target    = "integrations/${aws_apigatewayv2_integration.photos.id}"
 }
 
+resource "aws_apigatewayv2_route" "photos_put" {
+  api_id    = aws_apigatewayv2_api.http_api.id
+  route_key = "PUT /photos/{id}"
+  target    = "integrations/${aws_apigatewayv2_integration.photos.id}"
+}
+
 resource "aws_apigatewayv2_route" "photos_delete" {
   api_id    = aws_apigatewayv2_api.http_api.id
   route_key = "DELETE /photos/{id}"
@@ -120,6 +126,12 @@ resource "aws_apigatewayv2_route" "tracks_get" {
 resource "aws_apigatewayv2_route" "tracks_post" {
   api_id    = aws_apigatewayv2_api.http_api.id
   route_key = "POST /tracks"
+  target    = "integrations/${aws_apigatewayv2_integration.tracks.id}"
+}
+
+resource "aws_apigatewayv2_route" "tracks_put" {
+  api_id    = aws_apigatewayv2_api.http_api.id
+  route_key = "PUT /tracks/{id}"
   target    = "integrations/${aws_apigatewayv2_integration.tracks.id}"
 }
 

@@ -11,12 +11,14 @@ export const handler = async (
     "Content-Type": "application/json",
   };
 
-  if (event.httpMethod === "OPTIONS") {
+  const method = (event as any).requestContext?.http?.method || event.httpMethod;
+
+  if (method === "OPTIONS") {
     return { statusCode: 200, headers, body: "" };
   }
 
   try {
-    switch (event.httpMethod) {
+    switch (method) {
       case "GET":
         return await handleGet(event, headers);
       case "POST":

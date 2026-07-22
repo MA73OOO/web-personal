@@ -32,7 +32,7 @@ resource "aws_s3_bucket_cors_configuration" "media_cors" {
 
   cors_rule {
     allowed_headers = ["*"]
-    allowed_methods = ["GET", "HEAD"]
+    allowed_methods = ["GET", "HEAD", "PUT"]
     allowed_origins = ["*"]
     max_age_seconds = 3600
   }
@@ -61,6 +61,30 @@ resource "aws_cloudfront_origin_access_control" "media_oac" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
+}
+
+# 4a. CloudFront Function: Reescritura de URLs para Next.js Static Export
+# Convierte /galeria -> /galeria.html antes de buscar en S3
+resource "aws_cloudfront_function" "url_rewrite" {
+  name    = "${var.project_name}-url-rewrite"
+  runtime = "cloudfront-js-2.0"
+  comment = "Reescribe rutas limpias de Next.js a archivos .html en S3"
+  publish = true
+  code    = <<-EOT
+    async function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+
+      // Si no tiene extensión y no termina en /, agregar .html
+      if (!uri.includes('.') && !uri.endsWith('/')) {
+        request.uri = uri + '.html';
+      } else if (uri.endsWith('/')) {
+        request.uri = uri + 'index.html';
+      }
+
+      return request;
+    }
+  EOT
 }
 
 # 4. Distribución de CloudFront CDN
@@ -101,6 +125,12 @@ resource "aws_cloudfront_distribution" "cdn" {
         forward = "none"
       }
     }
+
+    # Reescritura de URLs para rutas de Next.js
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.url_rewrite.arn
+    }
   }
 
   # Comportamiento para assets multimedia (/media/*)
@@ -123,7 +153,15 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
   }
 
-  # Configuración de respuestas de error para Next.js App Router (SPA routing fallback)
+  # Configuración de respuestas de error para Next.js Static Export (SPA routing fallback)
+  # S3 privado devuelve 403 cuando el archivo no existe, no 404
+  custom_error_response {
+    error_code            = 403
+    response_code         = 200
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 10
+  }
+
   custom_error_response {
     error_code            = 404
     response_code         = 200

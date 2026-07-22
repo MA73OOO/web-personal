@@ -7,20 +7,24 @@ export const handler = async (
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type,Authorization",
-    "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+    "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
     "Content-Type": "application/json",
   };
 
-  if (event.httpMethod === "OPTIONS") {
+  const method = (event as any).requestContext?.http?.method || event.httpMethod;
+
+  if (method === "OPTIONS") {
     return { statusCode: 200, headers, body: "" };
   }
 
   try {
-    switch (event.httpMethod) {
+    switch (method) {
       case "GET":
         return await handleGet(headers);
       case "POST":
         return await handlePost(event, headers);
+      case "PUT":
+        return await handlePut(event, headers);
       case "DELETE":
         return await handleDelete(event, headers);
       default:
@@ -88,12 +92,45 @@ async function handlePost(
   };
 }
 
-// 3. Eliminar una playlist por ID de Spotify
+// 3. Actualizar una playlist por ID
+async function handlePut(
+  event: APIGatewayProxyEvent,
+  headers: Record<string, string>
+): Promise<APIGatewayProxyResult> {
+  const id = event.pathParameters?.id || event.queryStringParameters?.id;
+
+  if (!id) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el ID de la playlist." }) };
+  }
+
+  if (!event.body) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el cuerpo." }) };
+  }
+
+  const { title, description, url } = JSON.parse(event.body);
+
+  const updatedTrack = await prisma.track.update({
+    where: { id },
+    data: {
+      ...(title && { title }),
+      ...(description && { description }),
+      ...(url && { url }),
+    },
+  });
+
+  return {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify({ success: true, track: updatedTrack }),
+  };
+}
+
+// 4. Eliminar una playlist por ID de Spotify
 async function handleDelete(
   event: APIGatewayProxyEvent,
   headers: Record<string, string>
 ): Promise<APIGatewayProxyResult> {
-  const id = event.pathParameters?.id;
+  const id = event.pathParameters?.id || event.queryStringParameters?.id;
 
   if (!id) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Falta el ID de Spotify de la playlist." }) };
@@ -107,3 +144,4 @@ async function handleDelete(
     body: JSON.stringify({ success: true, message: "Playlist eliminada de la radio con éxito." }),
   };
 }
+

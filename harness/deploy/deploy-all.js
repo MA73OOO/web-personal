@@ -38,7 +38,7 @@ try {
   // 5. SUBIR AL BUCKET S3 E INVALIDAR CDN CLOUDFRONT
   console.log(`${YELLOW}5️⃣ [AWS Deploy] Sincronizando sitio estático en S3 e invalidando caché de CloudFront...${RESET}`);
   execSync('aws s3 sync out/ s3://ma73o-hub-site-681a6b26 --delete --profile ma730-dev', { stdio: 'inherit', cwd: ROOT_DIR });
-  execSync('aws cloudfront create-invalidation --distribution-id E34VKHZ37TZNOR --paths "/*" --profile ma730-dev', { stdio: 'inherit', cwd: ROOT_DIR });
+  execSync('aws cloudfront create-invalidation --distribution-id E34VKHZ37TZNOR --paths "/*" --no-cli-pager --profile ma730-dev', { stdio: 'inherit', cwd: ROOT_DIR });
   console.log(`${GREEN}✅ [AWS Deploy] Sitio en vivo actualizado exitosamente.${RESET}\n`);
 
   console.log(`${GREEN}🎉 [Harness - Deploy] ¡Éxito absoluto! Tu portafolio web personal y backend están en línea y actualizados en AWS.${RESET}`);
