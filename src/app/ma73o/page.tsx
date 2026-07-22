@@ -33,7 +33,14 @@ export default function Ma73oPage() {
   const t = translations[language].ma73oPage;
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10 space-y-16 font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500">
+    <div className="max-w-4xl mx-auto px-6 py-10 space-y-16 font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500 relative">
+      {/* Botón secreto de login (Blanco en Light Mode, Negro en Dark Mode para camuflaje) */}
+      <Link
+        href="/admin"
+        className="fixed left-4 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white dark:bg-black cursor-pointer transition-all active:scale-95 z-50"
+        title="Secret Access"
+      />
+
       <SubpageHeader sectionNumber="01" />
 
       {/* Title & Subtitle */}

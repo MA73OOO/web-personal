@@ -13,6 +13,19 @@ export async function loginAdmin(email: string, password: string) {
   return data; // Retorna { success, idToken, accessToken, refreshToken }
 }
 
+// 1b. Verificar código de doble factor (MFA) enviado al correo
+export async function verifyMfaCode(email: string, code: string, session: string) {
+  const res = await fetch(`${API_BASE_URL}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "verify_mfa", email, code, session }),
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Código de doble factor inválido.");
+  return data;
+}
+
 // 2. Registrar metadatos de la foto y subir el archivo binario a S3 (vía Presigned URL)
 export async function uploadPhoto(
   token: string,

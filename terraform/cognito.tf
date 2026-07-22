@@ -8,6 +8,26 @@ resource "aws_cognito_user_pool" "user_pool" {
   username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
 
+  mfa_configuration = "ON"
+
+  email_mfa_configuration {
+    message = "Tu codigo de verificacion de 2 pasos es {####}"
+    subject = "Codigo de Seguridad - MA73O Hub"
+  }
+
+  account_recovery_setting {
+    recovery_mechanism {
+      name     = "admin_only"
+      priority = 1
+    }
+  }
+
+  email_configuration {
+    email_sending_account = "DEVELOPER"
+    from_email_address    = "henaorangelmateo@gmail.com"
+    source_arn            = aws_ses_email_identity.admin_email.arn
+  }
+
   password_policy {
     minimum_length    = 8
     require_lowercase = true
@@ -53,6 +73,11 @@ resource "aws_cognito_user" "admin" {
     name           = "Mateo Henao Rangel"
   }
 
-  # Contraseña inicial temporal que Cognito te pedirá cambiar en el primer inicio de sesión
-  temporary_password = "AdminPassword123!"
+  # Contraseña inicial permanente para evitar el FORCE_CHANGE_PASSWORD
+  password = "AdminPassword123!"
+}
+
+# Identidad de SES para verificar el remitente
+resource "aws_ses_email_identity" "admin_email" {
+  email = "henaorangelmateo@gmail.com"
 }

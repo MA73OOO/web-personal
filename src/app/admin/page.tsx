@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SubpageHeader from "@/components/SubpageHeader";
-import { loginAdmin, uploadPhoto, createArticle, createTrack } from "./services";
+import { loginAdmin, verifyMfaCode, uploadPhoto, createArticle, createTrack } from "./services";
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,6 +11,11 @@ export default function AdminPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
+
+  // Estados para autenticación de doble factor (MFA)
+  const [mfaStep, setMfaStep] = useState(false);
+  const [mfaCode, setMfaCode] = useState("");
+  const [mfaSession, setMfaSession] = useState("");
 
   // Pestañas del dashboard
   const [activeTab, setActiveTab] = useState<"photos" | "articles" | "tracks">("photos");
@@ -57,16 +62,51 @@ export default function AdminPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
     setLoading(true);
 
     try {
       const data = await loginAdmin(email, password);
+
+      // Verificar si la respuesta de Cognito exige un segundo factor (MFA)
+      if (data.challengeName === "EMAIL_OTP") {
+        setMfaSession(data.session);
+        setMfaStep(true);
+        if (data.recoveryInitiated) {
+          setSuccessMessage("Proceso secreto de recuperación iniciado. Se envió el código a tu correo.");
+        } else {
+          setSuccessMessage("Código de verificación de 2 pasos enviado a tu correo.");
+        }
+        return;
+      }
+
+      // Si entra directamente sin MFA (caso de desactivación o fallback)
       localStorage.setItem("admin_token", data.idToken);
       setToken(data.idToken);
       setIsLoggedIn(true);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Error al iniciar sesión.";
-      setError(msg);
+      setError("Tu no eres Mateo ;) jajajajajaj");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleMfaSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
+    setLoading(true);
+
+    try {
+      const data = await verifyMfaCode(email, mfaCode, mfaSession);
+      localStorage.setItem("admin_token", data.idToken);
+      setToken(data.idToken);
+      setIsLoggedIn(true);
+      setMfaStep(false);
+      setMfaCode("");
+      setMfaSession("");
+    } catch (err: unknown) {
+      setError("Tu no eres Mateo ;) jajajajajaj");
     } finally {
       setLoading(false);
     }
@@ -159,7 +199,7 @@ export default function AdminPage() {
     }
   };
 
-  // VISTA 1: Formulario de Login
+  // VISTA 1: Formulario de Login / Verificación MFA
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center px-4 font-sans selection:bg-white selection:text-black">
@@ -175,39 +215,78 @@ export default function AdminPage() {
             </div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-4 font-mono text-xs">
-            <div className="space-y-1">
-              <label className="text-neutral-400 block uppercase">CORREO ELECTRÓNICO</label>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 p-3 text-white focus:outline-none focus:border-white transition-colors"
-                placeholder="ejemplo@correo.com"
-              />
+          {successMessage && (
+            <div className="p-3 bg-green-950/40 border border-green-800 text-green-200 text-xs font-mono text-center">
+              [ {successMessage} ]
             </div>
+          )}
 
-            <div className="space-y-1">
-              <label className="text-neutral-400 block uppercase">CONTRASEÑA</label>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 p-3 text-white focus:outline-none focus:border-white transition-colors"
-                placeholder="********"
-              />
-            </div>
+          {mfaStep ? (
+            <form onSubmit={handleMfaSubmit} className="space-y-4 font-mono text-xs">
+              <div className="space-y-1">
+                <label className="text-neutral-400 block uppercase">CÓDIGO DE VERIFICACIÓN (MFA EN CORREO)</label>
+                <input
+                  type="text"
+                  required
+                  value={mfaCode}
+                  onChange={(e) => setMfaCode(e.target.value)}
+                  className="w-full bg-neutral-900 border border-neutral-800 p-3 text-white focus:outline-none focus:border-white transition-colors tracking-widest text-center text-lg font-bold"
+                  placeholder="000000"
+                  maxLength={6}
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-white text-black p-3 font-bold uppercase hover:bg-neutral-200 transition-colors"
-            >
-              {loading ? "AUTENTICANDO..." : "INICIAR SESIÓN"}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-white text-black p-3 font-bold uppercase hover:bg-neutral-200 transition-colors"
+              >
+                {loading ? "VERIFICANDO..." : "COMPLETAR ACCESO"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => { setMfaStep(false); setError(""); setSuccessMessage(""); }}
+                className="w-full text-neutral-500 hover:text-white transition-colors text-center text-[10px] uppercase font-bold"
+              >
+                [ ← VOLVER AL LOGIN ]
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleLogin} className="space-y-4 font-mono text-xs">
+              <div className="space-y-1">
+                <label className="text-neutral-400 block uppercase">CORREO ELECTRÓNICO</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-neutral-900 border border-neutral-800 p-3 text-white focus:outline-none focus:border-white transition-colors"
+                  placeholder="ejemplo@correo.com"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-neutral-400 block uppercase">CONTRASEÑA</label>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-neutral-900 border border-neutral-800 p-3 text-white focus:outline-none focus:border-white transition-colors"
+                  placeholder="********"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-white text-black p-3 font-bold uppercase hover:bg-neutral-200 transition-colors"
+              >
+                {loading ? "AUTENTICANDO..." : "INICIAR SESIÓN"}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     );

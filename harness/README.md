@@ -13,6 +13,7 @@ Esta carpeta contiene scripts de automatización, arneses de pruebas y validador
 | 🛡️ **Validaciones** | `harness/validations/check-env.ps1`     | Verifica el estado de las dependencias locales, variables de entorno y versiones de Node/Git.             | `.\harness\validations\check-env.ps1`        | `npm run harness:env`      |
 | 🛡️ **Validaciones** | `harness/validations/git-prep.ps1`      | Prepara y valida la rama de Git local ejecutando validaciones de código completas antes de hacer commits. | `.\harness\validations\git-prep.ps1`         | `npm run harness:git`      |
 | 📝 **Content**　　 | `harness/content/validate-schemas.js`   | Valida que los esquemas JSON y Markdown de contenidos cumplan con las propiedades esperadas.              | `node harness/content/validate-schemas.js`   | `npm run harness:content`  |
+| 🔑 **Auth**　　　　 | `harness/validations/reset-password.js` | Permite restablecer contraseñas de Cognito fuera de la web usando el código de verificación del correo.   | `node harness/validations/reset-password.js` | N/A                         |
 
 ---
 
